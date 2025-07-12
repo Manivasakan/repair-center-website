@@ -67,14 +67,13 @@ function Login() {
     }
   };
 
-  const handleSocialLogin = (provider) => {
+  /*const handleSocialLogin = (provider) => {
     console.log(`Login with ${provider}`);
     // Implement social login logic here
-  };
+  };*/
 
   const handleForgotPassword = () => {
-    console.log('Forgot password clicked');
-    // Implement forgot password logic
+    navigate('/admin/forgot-password');
   };
 
   return (
@@ -203,14 +202,20 @@ function Login() {
                 label="Remember Me"
               />
               <Link
-                component="button"
-                type="button"
-                variant="body2"
-                onClick={handleForgotPassword}
-                sx={{ textDecoration: 'none' }}
-              >
-                [Forgot Password?]
-              </Link>
+              component="button"
+              type="button"
+              variant="body2"
+              onClick={handleForgotPassword}
+              sx={{ 
+                textDecoration: 'none',
+                color: 'primary.main',
+                '&:hover': {
+                  textDecoration: 'underline'
+                }
+              }}
+            >
+              Forgot Password?
+            </Link>
             </Box>
 
             {/* Login Button */}
@@ -231,7 +236,7 @@ function Login() {
                 }
               }}
             >
-              {loading ? 'LOGGING IN...' : '[LOGIN BUTTON]'}
+              {loading ? 'LOGGING IN...' : 'LOGIN'}
             </Button>
 
             {/* Divider */}
@@ -247,7 +252,7 @@ function Login() {
             </Box>
 
             {/* Social Login Buttons */}
-            <Box sx={{ display: 'flex', gap: 1, mb: 3 }}>
+            {/*<Box sx={{ display: 'flex', gap: 1, mb: 3 }}>
               <Button
                 variant="outlined"
                 fullWidth
@@ -275,7 +280,7 @@ function Login() {
               >
                 [Company SSO]
               </Button>
-            </Box>
+            </Box>*/}
           </Box>
 
           {/* Footer */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
 import Header from './Header';
 import Footer from './Footer';
@@ -11,12 +11,19 @@ import Contact from '../../pages/public/Contact';
 
 // Admin Pages
 import Login from '../../pages/admin/Login';
+import ForgotPassword from '../../pages/admin/ForgotPassword';
 
 function Layout() {
+  const location = useLocation();
+  
+  // Hide header and footer on admin login page
+  //const isAdminLogin = location.pathname === '/admin/login';
+  const isAdminLogin = (location.pathname === '/admin/login') || (location.pathname === '/admin/forgot-password');
+
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      {/* Header - appears on all pages */}
-      <Header />
+      {/* Header - hide on admin login */}
+      {!isAdminLogin && <Header />}
       
       {/* Main Content Area */}
       <Box component="main" sx={{ flexGrow: 1 }}>
@@ -28,12 +35,13 @@ function Layout() {
           
           {/* Admin Routes */}
           <Route path="/admin/login" element={<Login />} />
+          <Route path="/admin/forgot-password" element={<ForgotPassword />} />
           {/* Add more admin routes later */}
         </Routes>
       </Box>
       
-      {/* Footer - appears on all pages */}
-      <Footer />
+      {/* Footer - hide on admin login */}
+      {!isAdminLogin && <Footer />}
     </Box>
   );
 }
